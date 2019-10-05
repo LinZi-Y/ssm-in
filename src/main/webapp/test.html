@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        #login{
+            width:400px;
+            height:280px;
+            position:absolute;
+            left: 50%;
+            top: 50%;
+            margin-left:-200px;
+            margin-top:-140px;
+            border:1px;
+            align:center;
+
+
+        }
+
+        .tbposi{
+            position:absolute;
+            margin-left:-60px
+
+        }
+        .long{
+            width:370px;
+        }
+        h2{
+            text-align:center;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#logins").click(function(){
+                var params={
+                    name:$("#name").val(),
+                    password:$("#password").val()
+                }
+
+                $.ajax({
+                    "url":"article/login",
+                    "data":params,
+                    "type":"post",
+                    "contentType":"application/json",
+                    "success":function(data){
+                        alert(data);
+                        if (data > 0){
+                            alert("登录成功！");
+                            window.location.href="article/indexUI"
+                        } else {
+                            alert("用户名或密码错误");
+                        }
+                    },
+                    "dataType":"json"
+                })
+            });
+            $("#article").click(function () {
+                alert("点击了咨询");
+                window.location.href="article/art"
+            })
+            $("#add").click(function () {
+                alert("点击了咨询");
+                window.location.href="article/add"
+            })
+        })
+
+    </script>
+</head>
+<body
+      style=" background-repeat:no-repeat ;
+                 background-size:100% 100%;
+                 background-attachment: fixed;">
+<div id="login">
+    <div class="container">
+
+        <h2>登录</h2>
+        <form  method="post">
+
+            <div class="form-group">
+
+                <label class="tbposi" >用户名:</label>
+                <input type="text" class="form-control" id="name" placeholder="请输入用户名"/>
+            </div>
+
+            <div class="form-group">
+                <label class="tbposi">密码:</label>
+                <input type="password" class="form-control" id="password" placeholder="请输入密码"/>
+            </div>
+            <a class="btn btn-primary long" id="logins">登录</a>
+
+        </form>
+        <input type="button" value="展示" id="article"/>
+        <input type="button" value="添加文章" id="add"/>
+    </div>
+</div>
+</body>
+</html>
