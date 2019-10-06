@@ -32,6 +32,11 @@ public class SiteInfoServiceImpl implements ISiteInfoService {
     }
 
     @Override
+    public SiteInfo quireSiteInfo() {
+        return siteInfoMapper.quireSiteInfo();
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(SiteInfo record) {
         return siteInfoMapper.updateByPrimaryKeySelective(record);
     }

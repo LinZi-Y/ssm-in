@@ -12,6 +12,8 @@ public interface ISiteInfoService {
 
     SiteInfo selectByPrimaryKey(Integer id);
 
+    SiteInfo quireSiteInfo();
+
     int updateByPrimaryKeySelective(SiteInfo record);
 
     int updateByPrimaryKey(SiteInfo record);

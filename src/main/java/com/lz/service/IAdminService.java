@@ -16,4 +16,6 @@ public interface IAdminService {
 
     int updateByPrimaryKey(Admin record);
 
+    int findByUP(String username,String password);
+
 }

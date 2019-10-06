@@ -14,4 +14,6 @@ public interface IAdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+    int findByUP(String username,String password);
 }

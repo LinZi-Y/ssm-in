@@ -16,7 +16,34 @@
     <![endif]-->
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.0/js/bootstrap.js"></script>
-
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                "url":"quireInfo",
+                "success":function (quireInfo) {
+                    console.log(quireInfo);
+                    if (quireInfo.data!=null){
+                        for (var i in quireInfo){
+                            /*$("#logo").attr("src",quireInfo[i].logo);*/
+                            $("#title").val(quireInfo[i].title);
+                            $("#subtitle").val(quireInfo[i].subtitle);
+                            $("#domain").val(quireInfo[i].domain);
+                            $("#copyright").val(quireInfo[i].copyright);
+                            $("#description").val(quireInfo[i].description);
+                            $("#icp").val(quireInfo[i].icp);
+                        }
+                    }else {
+                        alert("数据未找到");
+                    }
+                },
+                "dataType":"json"
+            })
+            /*选择图片后可预览图片的效果*/
+            $("#file").change(function () {
+                $("#logo").attr("src",URL.createObjectURL($(this)[0].files[0]));
+            })
+        })
+    </script>
 </head>
 <body>
 <div id="login">
@@ -27,21 +54,25 @@
 
             <div class="form-group"><input class="form-control" id="id" name="id" type="hidden" value="50"></div>
 
-            <div class="form-group"><label class="tbposi">标题：</label> <input class="form-control" id="title" name="title" type="text"></div>
+            <div class="form-group"><label class="tbposi">站点标题：</label> <input class="form-control" id="title" name="title" type="text"></div>
 
             <div class="form-group"><label class="tbposi">副标题：</label> <input class="form-control" id="subtitle" name="subtitle" type="text"></div>
 
-            <div class="form-group"><label class="tbposi">地址:</label><textarea class="form-control" id="domain" name="domain" rows="3"></textarea></div>
+            <div class="form-group"><label class="tbposi">网站地址:</label><textarea class="form-control" id="domain" name="domain" rows="3"></textarea></div>
 
-            <div class="form-group"><label class="tbposi">描述:</label><textarea class="form-control" id="description" name="description" rows="3"></textarea></div>
+            <div class="form-group"><label class="tbposi">版权信息:</label><input class="form-control" id="copyright" name="copyright" type="text"></div>
 
-            <div class="form-group"><label class="tbposi">备案：</label> <input class="form-control" id="icp" name="icp" type="text"></div>
+            <div class="form-group"><label class="tbposi">网站描述:</label><textarea class="form-control" id="description" name="description" rows="3"  style="resize: none"></textarea></div>
 
-            <div class="form-group"><label class="tbposi">版权信息:</label><textarea class="form-control" id="copyright" name="copyright" rows="3"></textarea></div>
+            <div class="form-group"><label class="tbposi">网站备案号：</label> <input class="form-control" id="icp" name="icp" type="text"></div>
 
-            <div class="form-group"><label class="tbposi">logo:</label> <input id="file" name="file" type="file"></div>
-
-            <a class="btn btn-primary" id="but">提交</a></form>
+            <div class="form-group">
+                <label class="tbposi">logo:</label>
+                <input id="file" name="file" type="file">
+                <img src="" id="logo" name="logo"/>
+            </div>
+            <a class="btn btn-primary" id="but">修改</a>
+        </form>
     </div>
 </div>
 </body>

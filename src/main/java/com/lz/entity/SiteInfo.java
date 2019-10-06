@@ -10,6 +10,11 @@ public class SiteInfo {
     private Integer id;
 
     /**
+     * 站点LOGO地址
+     */
+    private String logo;
+
+    /**
     * 站点标题
     */
     private String title;
@@ -25,9 +30,9 @@ public class SiteInfo {
     private String domain;
 
     /**
-    * 站点LOGO地址
-    */
-    private String logo;
+     * 版权信息
+     */
+    private String copyright;
 
     /**
     * 站点描述
@@ -39,8 +44,4 @@ public class SiteInfo {
     */
     private String icp;
 
-    /**
-    * 版权信息
-    */
-    private String copyright;
 }

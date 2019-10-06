@@ -82,4 +82,11 @@
       is_delete = #{isDelete,jdbcType=VARCHAR}
     where a_id = #{aId,jdbcType=INTEGER}
   </update>
+
+  <select id="findByUP" parameterType="com.lz.entity.Admin" resultType="int">
+    select
+    count(*)
+    from admin
+    WHERE username=#{param1,jdbcType=VARCHAR} and password=#{param2,jdbcType=VARCHAR}
+  </select>
 </mapper>

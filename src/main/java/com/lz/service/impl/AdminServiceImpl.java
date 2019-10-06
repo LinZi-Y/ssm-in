@@ -41,4 +41,8 @@ public class AdminServiceImpl implements IAdminService {
         return adminMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public int findByUP(String username,String password) {
+        return adminMapper.findByUP(username,password);
+    }
 }
