@@ -1,14 +1,23 @@
 package com.lz.conteoller;
 
+import com.lz.entity.Goods;
 import com.lz.entity.SiteInfo;
 import com.lz.mapper.ISiteInfoMapper;
 import com.lz.service.ISiteInfoService;
 import com.lz.utils.JsonResult;
+import com.lz.utils.UploadFile;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * @author
@@ -16,10 +25,14 @@ import javax.annotation.Resource;
  */
 @Controller()
 @RequestMapping("/siteInfo")
+@Slf4j
 public class SiteInfoController {
 
     @Resource
     private ISiteInfoService iSiteInfoService;
+
+    @Resource
+    private UploadFile uploadFile;
 
     @RequestMapping("/toInfo")
     public String toInfo(){
@@ -34,6 +47,13 @@ public class SiteInfoController {
         return new JsonResult(siteInfo);
     }
 
+    @RequestMapping("/submitInfo")
+    public String submitInfo(@ModelAttribute("siteInfo") SiteInfo siteInfo,MultipartFile file,HttpServletRequest request) throws IOException {
+        SiteInfo site = uploadFile.uploadFile(siteInfo, file, request);
+        log.info("site::::"+site);
+        iSiteInfoService.updateByPrimaryKey(site);
+        return "siteInfo";
+    }
 
     /**
      * 上传文章,将markdown解析成html

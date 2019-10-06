@@ -52,9 +52,5 @@
         <property name="maxInMemorySize" value="40960"></property>
         <!--文件或参数访问时延迟解决多部分请求-->
         <property name="resolveLazily" value="true"></property>
-        <!--设置存储上传文件的临时目录-->
-        <!--<property name="uploadTempDir" value=""></property>-->
     </bean>
-
-
 </beans>
